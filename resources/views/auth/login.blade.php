@@ -21,6 +21,8 @@
 				<div class="block">
 				<form method="POST" action="{{ route('login') }}">
 						@csrf
+						
+						
 
 						<div class="form-group row">
 							<label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Correo') }}</label>
@@ -57,6 +59,7 @@
 								<a class="btn btn-link" href="{{ route('password.request') }}">
 									{{ __('¿Olvidó su contraseña?') }}
 								</a>
+								<a class="btn btn-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
 							</div>
 						</div>
 					</form>

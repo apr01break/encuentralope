@@ -21,21 +21,69 @@
 
     </div>
     <div class="col-md-8">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form method="POST" action="{{ route('register') }}">
             @csrf
 
             <div class="form-group row">
-              <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+							<label for="nombres" class="col-sm-4 col-form-label text-md-right">{{ __('Nombres') }}</label>
 
-              <div class="col-md-6">
-                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}"
-                  required autofocus> @if ($errors->has('name'))
-                <span class="invalid-feedback">
-                  <strong>{{ $errors->first('name') }}</strong>
-                </span>
-                @endif
-              </div>
-            </div>
+							<div class="col-md-6">
+								<input id="nombres" type="nombres" class="form-control{{ $errors->has('nombres') ? ' is-invalid' : '' }}" name="nombres" value="{{ old('nombres') }}"
+								  required autofocus> @if ($errors->has('nombres'))
+								<span class="invalid-feedback">
+									<strong>{{ $errors->first('nombres') }}</strong>
+								</span>
+								@endif
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="apellidos" class="col-sm-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
+
+							<div class="col-md-6">
+								<input id="apellidos" type="apellidos" class="form-control{{ $errors->has('apellidos') ? ' is-invalid' : '' }}" name="apellidos" value="{{ old('apellidos') }}"
+								  required> @if ($errors->has('apellidos'))
+								<span class="invalid-feedback">
+									<strong>{{ $errors->first('apellidos') }}</strong>
+								</span>
+								@endif
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="edad" class="col-sm-4 col-form-label text-md-right">{{ __('Edad') }}</label>
+
+							<div class="col-md-6">
+								<input id="edad" type="number" class="form-control{{ $errors->has('edad') ? ' is-invalid' : '' }}" name="edad" value="{{ old('edad') }}"
+								  required> @if ($errors->has('edad'))
+								<span class="invalid-feedback">
+									<strong>{{ $errors->first('edad') }}</strong>
+								</span>
+								@endif
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="telefono" class="col-sm-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
+
+							<div class="col-md-6">
+								<input id="telefono" type="number" class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" name="telefono" value="{{ old('telefono') }}"
+								  required> @if ($errors->has('telefono'))
+								<span class="invalid-feedback">
+									<strong>{{ $errors->first('telefono') }}</strong>
+								</span>
+								@endif
+							</div>
+						</div>
 
             <div class="form-group row">
               <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electrónico') }}</label>

@@ -11,25 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('inicio');
-});
+Route::get('/', 'PublicacionController@inicio');
 
 Route::get('/acerca', function () {
     return view('acerca');
 });
-Route::get('/publicar', function () {
-    return view('publicar');
-});
+
+
+Route::resource('publicar', 'PublicacionController')->middleware('auth');
 Route::get('/objetos_perdidos', function () {
     return view('objetos_perdidos');
 });
-Route::get('/objetos_encontrados', function () {
-    return view('objetos_encontrados');
-});
-Route::get('/publicacion', function () {
-    return view('publicacion');
-});
+
+Route::get('/objetos_encontrados','PublicacionController@encontrados');
+
+Route::get('/objetos_perdidos','PublicacionController@perdidos');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

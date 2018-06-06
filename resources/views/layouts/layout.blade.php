@@ -89,7 +89,6 @@
                                     </form>
                                 @else
                                 <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
-                                <li><a href="{{ route('register') }}">Registrarse</a></li>
                                 @endauth
                               
                             @endif
@@ -155,5 +154,6 @@
 	<script src="{{ asset('plantilla/plugins/facncybox/jquery.fancybox.js')}}"></script>
 	<!-- template main js -->
 	<script src="{{ asset('plantilla/js/main.js')}}"></script>
+    @yield('script')
  	</body>
 </html>

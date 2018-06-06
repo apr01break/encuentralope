@@ -6,9 +6,9 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <h2>mochila de color oscuro</h2>
+          <h2>{{$pub->titulo}}</h2>
           <div class="portfolio-meta">
-            <span>10 de abril de 2018</span>|
+            <span>{{date('d M,Y', strtotime($pub->created_at))}}</span>|
             <span> Chancay</span>
           </div>
         </div>
@@ -30,7 +30,7 @@
                 <img src="{{asset('plantilla/images/author/author.jpg')}}">
               </div>
               <div class="author-bio">
-                <h3>Joel Martin Pumachagua Rosales</h3>
+                <h3>{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</h3>
                 <p>Chancay, Lima, Perú </p>
               </div>
             </div>
@@ -72,18 +72,12 @@
                 <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="{{asset('slide/img/spin.svg')}}" />
               </div>
               <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:520px;overflow:hidden;">
-                <div data-p="170.00">
-                  <img data-u="image" src="{{asset('slide/img/001.jpg')}}" />
-                </div>
-                <div data-p="170.00">
-                  <img data-u="image" src="{{asset('slide/img/002.jpg')}}" />
-                </div>
-                <div data-p="170.00">
-                  <img data-u="image" src="{{asset('slide/img/003.jpg')}}" />
-                </div>
-                <div data-p="170.00">
-                  <img data-u="image" src="{{asset('slide/img/004.jpg')}}" />
-                </div>
+              
+                @foreach($pub->imagenes as $img)
+                  <div data-p="170.00">
+                    <img data-u="image" src="data:image/jpeg;base64,{{base64_encode($img->foto)}}" alt="aa"/>
+                  </div>
+                @endforeach
               </div>
               <!-- Bullet Navigator -->
               <div data-u="navigator" class="jssorb051" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5"
@@ -111,17 +105,16 @@
           </div>
           <div class="blog-content">
             <h2 class="blogpost-title">
-              Mochila de universitario de color oscuro
+              {{$pub->titulo}}
             </h2>
             <div class="blog-meta">
-              <span>10 de abril de 2018</span>
+              <span>{{date('d M,Y', strtotime($pub->created_at))}}</span>
               <span>Chancay</span>
             </div>
-            <p>Esta mochila la encontre en la calle Lorenzo Raviel cuadra 3 cuando estaba caminando, la vi tirada y nadie estaba al lado
-          así que asumí que alguien la había olvidado . Si alguien conoce al dueño, por favor comunicarle. Hay cuadernos
-          y folders dentro con trabajos monográficos.
+            <p>
+            {{$pub->descripcion}}
             </p>
-            <button  class="btn btn-dafault btn-details">Dejar un mensaje</button>
+            <button  class="btn btn-default btn-details">Dejar un mensaje</button>
           </div>
         </article>
         
