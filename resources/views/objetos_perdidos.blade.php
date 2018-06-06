@@ -28,114 +28,25 @@
             </p>
         </div>
         <div class="row">
-        
+            @foreach($pubs as $pub)
             <div class="col-sm-4 col-xs-12">
                 <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
                     <div class="img-wrapper">
-                        <a href="#"> <img src="{{('plantilla/images/portfolio/selladora2.jpg')}}" class="img-responsive" alt="this is a title" ></a>
+                        <a href="{{route('publicar.show',$pub->id)}}"> <img src="data:image/jpeg;base64,{{base64_encode($pub->imagenes[0]->foto)}}" height="270" width="360" alt="this is a title" ></a>
                     </div>
                     <figcaption>
                     <h4>
-                    <a href="#">
-                      Selladora para ...
+                    <a href="{{route('publicar.show',$pub->id)}}">
+                    {{$pub->titulo}}
                     </a>
                     </h4>
                     <p>
-                        7 de abril de 2018 en Huaraz
+                    {{date('d M,Y', strtotime($pub->created_at))}} en Huacho
                     </p>
                     </figcaption>
                 </figure>
             </div>
-            <div class="col-sm-4 col-xs-12">
-                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="300ms">
-                    <div class="img-wrapper">
-                    <a href="#"><img src="{{('plantilla/images/portfolio/casaca.png')}}" class="img-responsive" alt="this is a title" ></a>
-                        
-                    </div>
-                    <figcaption>
-                    <h4>
-                    <a href="#">
-                        Casaca con marca en el brazo derecho
-                    </a>
-                    </h4>
-                    <p>
-                        4 de mayo de 2018 en Trujillo
-                    </p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-sm-4 col-xs-12">
-                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="300ms">
-                    <div class="img-wrapper">
-                    <a href="#"><img src="{{('plantilla/images/portfolio/barquito.jpg')}}" class="img-responsive" alt="" ></a>
-                        
-                    </div>
-                    <figcaption>
-                    <h4>
-                    <a href="#">
-                        Barquito de madera 
-                    </a>
-                    </h4>
-                    <p>
-                        21 de abril de 2018 en Lima
-                    </p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-sm-4 col-xs-12">
-                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="600ms">
-                    <div class="img-wrapper">
-                    <a href="#"><img src="{{('plantilla/images/portfolio/selladora.jpg')}}" class="img-responsive" alt="" ></a>
-                        
-                    </div>
-                    <figcaption>
-                    <h4>
-                    <a href="#">
-                        Selladora 
-                    </a>
-                    </h4>
-                    <p>
-                        19 de mayo de 2018 en Huacho
-                    </p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-sm-4 col-xs-12">
-                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="900ms">
-                    <div class="img-wrapper">
-                    <a href="#"><img src="{{('plantilla/images/portfolio/perro3.jpg')}}" class="img-responsive" alt="" ></a>
-                        
-                    </div>
-                    <figcaption>
-                    <h4>
-                    <a href="#">
-                        Perro pequeño
-                    </a>
-                    </h4>
-                    <p>
-                        1 de enero de 2018 en Huaura
-                    </p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-sm-4 col-xs-12">
-                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="1200ms">
-                    <div class="img-wrapper">
-                    <a href="#"><img src="{{('plantilla/images/portfolio/perro2.jpg')}}" class="img-responsive" alt="" ></a>
-                        
-                    </div>
-                    <figcaption>
-                    <h4>
-                    <a href="#">
-                        Perrón
-                    </a>
-                    </h4>
-                    <p>
-                        28 de febrero de 2018 en Barranca
-                    </p>
-                    </figcaption>
-                </figure>
-            </div>
+            @endforeach
             
         </div>
         

@@ -19,7 +19,15 @@
     </div>
   </div>
 </section>
-
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 <!-- 
 ================================================== 
@@ -35,36 +43,47 @@
             Complete todos los campos
           </p>
           <div class="contact-form">
-            <form id="contact-form" method="#" action="#" role="form">
+            <form id="form" method="post" action="{{route('publicar.store')}}"  enctype="multipart/form-data">
+            @csrf
               <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">
-                <select name="razon" id="razon" class="form-control">
-                  <option value="">¿Qué sucedió? (seleccionar)</option>
-                  <option value="">Encontré un objeto</option>
-                  <option value="">Perdí un objeto</option>
+                <select name="categoria_id" id="tipo" class="form-control" required>
+                  <option value="">Categoría (seleccionar)</option>
+                  @foreach($categorias as $cat)
+                  
+                  <option value="{{$cat->id}}">{{$cat->nombre}}</option>
+                  @endforeach
+                  
                 </select>
               </div>
 
+              <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">
+                <select name="subcategoria_id" id="tipo" class="form-control" required>
+                  <option value="">Sub categoría (seleccionar)</option>
+                  @foreach($subcategorias as $subcat)
+                  <option data="{{$subcat->categoria_id}}" value="{{$subcat->id}}" hidden>{{$subcat->nombre}}</option>
+                  @endforeach
+                  
+                </select>
+              </div>
 
+              <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">
+                <select name="tipo" id="tipo" class="form-control" required>
+                  <option value="">¿Qué sucedió? (seleccionar)</option>
+                  <option value="Encontré un objeto">Encontré un objeto</option>
+                  <option value="Perdí un objeto">Perdí un objeto</option>
+                </select>
+              </div>
 
               <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".4s">
-                <input type="text" placeholder="Título" class="form-control" name="titulo" id="titulo">
+                <input type="text" placeholder="Título" class="form-control" name="titulo" required id="titulo">
               </div>
 
               <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".5s">
-                <textarea rows="6" placeholder="Descripción" class="form-control" name="descripcion" id="descripcion"></textarea>
+                <textarea rows="6" placeholder="Descripción" class="form-control" name="descripcion" required id="descripcion"></textarea>
               </div>
 
               <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s">
-                <input type="file" name="" multiple>
-              </div>
-
-
-              <div id="success" class="success">
-                Thank you. The Mailman is on His Way :)
-              </div>
-
-              <div id="error" class="error">
-                Sorry, don't know what happened. Try later :(
+                <input type="file" name="fotos[]" multiple required>
               </div>
 
               <div id="submit" class="wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".7s">
@@ -91,4 +110,21 @@
     </div>
    
 </section>
+@endsection
+@section('script')
+<script type="text/javascript">
+	$(function () {
+    $("select[name=categoria_id]").on('change',function(){
+      if($(this).val()!=""){
+        $("select[name=subcategoria_id] option").attr('hidden',true);
+        $("select[name=subcategoria_id] option[data="+$(this).val()+"]").attr('hidden',false);
+      }
+		});
+    $("#fodrm").submit(function(){
+      event.preventDefault();
+      console.log($(this).serialize());
+    });
+    
+  });
+</script>
 @endsection
